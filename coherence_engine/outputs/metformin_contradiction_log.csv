@@ -1,0 +1,5 @@
+paragraph_a,paragraph_b,triplet_a,triplet_b,subject,object,predicate_a,predicate_b,finding
+1,5,"('metformin', 'reduce', 'blood glucose level')","('metformin', 'not reduce', 'blood glucose')",metformin,blood glucose level,reduce,not reduce,"Logical Contradiction: P1 states 'reduce' vs P5 states 'not reduce' on (metformin, blood glucose level)"
+1,5,"('metformin', 'reduce', 'blood glucose level')","('metformin', 'not decrease', 'hepatic glucose production')",metformin,blood glucose level,reduce,not decrease,"Logical Contradiction: P1 states 'reduce' vs P5 states 'not decrease' on (metformin, blood glucose level)"
+2,5,"('metformin', 'reduce', 'blood glucose level')","('metformin', 'not reduce', 'blood glucose')",metformin,blood glucose level,reduce,not reduce,"Logical Contradiction: P2 states 'reduce' vs P5 states 'not reduce' on (metformin, blood glucose level)"
+2,5,"('metformin', 'reduce', 'blood glucose level')","('metformin', 'not decrease', 'hepatic glucose production')",metformin,blood glucose level,reduce,not decrease,"Logical Contradiction: P2 states 'reduce' vs P5 states 'not decrease' on (metformin, blood glucose level)"

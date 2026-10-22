@@ -1,0 +1,24 @@
+Paragraph_ID,Subject,Predicate,Object
+1,metformin,reduce,blood glucose level
+1,metformin,reduce,patient
+1,medication,suppress,hepatic glucose production
+1,medication,suppress,liver
+1,metformin,improve,addition
+1,metformin,improve,insulin sensitivity
+1,metformin decrease,glycate,hemoglobin concentration
+2,metformin,reduce,blood glucose level
+2,medication,suppress,hepatic glucose production
+2,metformin,improve,insulin sensitivity
+2,metformin,decrease,glycate hemoglobin concentration
+3,metformin,activate,cellular level
+3,metformin,activate,adenosine activate protein kinase
+3,drug,inhibit,mitochondrial respiration
+3,which,alter,cellular energy balance
+3,metabolic pathway,reduce,gluconeogenesis
+3,metabolic pathway,stimulate,glucose uptake
+3,physician,prescribe,metformin
+3,physician,prescribe,first line pharmacotherapy
+4,metformin therapy,improve,cardiovascular outcome
+4,regular administration,mitigate,insulin resistance
+4,early intervention,prevent,diabetic microvascular complication
+4,metformin,maintain,daily glycemic stability

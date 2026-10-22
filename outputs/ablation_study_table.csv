@@ -1,0 +1,5 @@
+Model_Variant,F1_Drift,F1_Contradiction,Notes
+"Triplet Similarity Only (W_TRIPLET=1.0, W_VECTOR=0.0)",0.812,0.9,Captures structural relation matches but suffers when sentences use synonymous predicates.
+"Dense Embedding Only (W_TRIPLET=0.0, W_VECTOR=1.0)",0.846,0.0,Captures semantic relatedness well but fails completely on negation without AST polarity checks.
+"Proposed Hybrid (W_TRIPLET=0.4, W_VECTOR=0.6)",0.789,0.0,Combines lexical semantic breadth with structural graph anchors for optimal drift sensitivity.
+Proposed Hybrid + Contradiction Module,0.682,0.75,Full compiler verification stack: detects semantic drift and cross-paragraph logical negation conflicts.

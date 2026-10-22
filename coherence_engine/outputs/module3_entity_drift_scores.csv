@@ -1,0 +1,5 @@
+Paragraph,Paragraph_ID,Total_Entities,Retained_Entities_Count,New_Entities_Count,Retention_Ratio,New_Entity_Ratio,Retained_List,New_List
+P1,1,10,0,10,0.0,1.0,[],"['addition', 'blood glucose level', 'hemoglobin concentration', 'hepatic glucose production', 'insulin sensitivity', 'liver', 'medication', 'metformin', 'metformin decrease', 'patient']"
+P2,2,6,5,1,0.833,0.167,"['blood glucose level', 'hepatic glucose production', 'insulin sensitivity', 'medication', 'metformin']",['glycate hemoglobin concentration']
+P3,3,12,1,11,0.083,0.917,['metformin'],"['adenosine activate protein kinase', 'cellular energy balance', 'cellular level', 'drug', 'first line pharmacotherapy', 'gluconeogenesis', 'glucose uptake', 'metabolic pathway', 'mitochondrial respiration', 'physician', 'which']"
+P4,4,8,1,7,0.125,0.875,['metformin'],"['cardiovascular outcome', 'daily glycemic stability', 'diabetic microvascular complication', 'early intervention', 'insulin resistance', 'metformin therapy', 'regular administration']"

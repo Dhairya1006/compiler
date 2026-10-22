@@ -1,0 +1,2 @@
+Task,Total_Contradicting_Pairs,Total_Pairs_Tested,TP,FP,FN,TN,Accuracy,Precision,Recall,F1_Score
+Contradiction Detection (Negation Inversion),10,40,6,0,4,30,0.9,1.0,0.6,0.75

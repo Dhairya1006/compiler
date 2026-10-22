@@ -1,0 +1,51 @@
+id,type,sentence,gold,extracted,precision,recall,f1
+1,active_compound,Metformin reduces blood glucose.,"[('metformin', 'reduce', 'blood glucose')]","[('metformin', 'reduce', 'blood glucose')]",1.0,1.0,1.0
+2,passive_agent,Blood glucose is reduced by metformin.,"[('metformin', 'reduce', 'blood glucose')]","[('metformin', 'reduce', 'blood glucose')]",1.0,1.0,1.0
+3,passive_no_agent,The medication was administered.,"[('[unspecified]', 'administer', 'medication')]","[('[unspecified]', 'administer', 'medication')]",1.0,1.0,1.0
+4,conjunction_subjects,Diet and exercise improve metabolic health.,"[('diet', 'improve', 'metabolic health'), ('exercise', 'improve', 'metabolic health')]","[('diet', 'improve', 'metabolic health'), ('exercise', 'improve', 'metabolic health')]",1.0,1.0,1.0
+5,coordinated_verbs,Doctors prescribe medication and monitor symptoms.,"[('doctor', 'prescribe', 'medication'), ('doctor', 'monitor', 'symptom')]","[('doctor', 'prescribe', 'medication'), ('doctor', 'monitor', 'symptom')]",1.0,1.0,1.0
+6,negation,Insulin does not cure diabetes.,"[('insulin', 'not cure', 'diabetes')]","[('insulin', 'not cure', 'diabetes')]",1.0,1.0,1.0
+7,prepositional_object,Aspirin interacts with warfarin.,"[('aspirin', 'interact', 'warfarin')]","[('aspirin', 'interact', 'warfarin')]",1.0,1.0,1.0
+8,multi_clause,"Although diet controls glucose, patients require metformin.","[('diet', 'control', 'glucose'), ('patient', 'require', 'metformin')]","[('diet', 'control', 'glucose'), ('patient', 'require', 'metformin')]",1.0,1.0,1.0
+9,conjunction_objects,Metformin reduces blood glucose and cardiovascular risk.,"[('metformin', 'reduce', 'blood glucose'), ('metformin', 'reduce', 'cardiovascular risk')]","[('metformin', 'reduce', 'blood glucose'), ('metformin', 'reduce', 'cardiovascular risk')]",1.0,1.0,1.0
+10,passive_agent,The diagnosis was confirmed by the radiologist.,"[('radiologist', 'confirm', 'diagnosis')]","[('radiologist', 'confirm', 'diagnosis')]",1.0,1.0,1.0
+11,coordinated_verbs,Metformin lowers glucose and improves insulin sensitivity.,"[('metformin', 'lower', 'glucose'), ('metformin', 'improve', 'insulin sensitivity')]","[('metformin', 'lower', 'glucose'), ('metformin', 'improve', 'insulin sensitivity')]",1.0,1.0,1.0
+12,passive_no_agent,Adverse effects were observed during the trial.,"[('[unspecified]', 'observe', 'adverse effect')]","[('[unspecified]', 'observe', 'adverse effect')]",1.0,1.0,1.0
+13,active_compound,Warfarin inhibits vitamin K epoxide reductase.,"[('warfarin', 'inhibit', 'vitamin k epoxide reductase')]","[('warfarin', 'inhibit', 'vitamin k epoxide reductase')]",1.0,1.0,1.0
+14,passive_agent,Vitamin K epoxide reductase is inhibited by warfarin.,"[('warfarin', 'inhibit', 'vitamin k epoxide reductase')]","[('warfarin', 'inhibit', 'vitamin k epoxide reductase')]",1.0,1.0,1.0
+15,active,Aspirin acetylates cyclooxygenase-1.,"[('aspirin', 'acetylate', 'cyclooxygenase-1')]",[],0.0,0.0,0.0
+16,passive_agent,Cyclooxygenase-1 is acetylated by aspirin.,"[('aspirin', 'acetylate', 'cyclooxygenase-1')]","[('aspirin', 'acetylate', 'cyclooxygenase-1')]",1.0,1.0,1.0
+17,active_compound,Both medications prevent thrombus formation.,"[('medication', 'prevent', 'thrombus formation')]","[('medication', 'prevent', 'thrombus formation')]",1.0,1.0,1.0
+18,gerund_complement,Combination therapy increases bleeding risk.,"[('combination therapy', 'increase', 'risk')]","[('combination therapy', 'increase', 'risk')]",1.0,1.0,1.0
+19,conjunction_objects,The treatment impairs platelet plug formation and secondary coagulation.,"[('treatment', 'impair', 'platelet plug formation'), ('treatment', 'impair', 'secondary coagulation')]","[('treatment', 'impair', 'platelet plug formation'), ('treatment', 'impair', 'secondary coagulation')]",1.0,1.0,1.0
+20,active_compound,Proton pump inhibitors protect gastric mucosa.,"[('proton pump inhibitor', 'protect', 'gastric mucosa')]","[('inhibitor', 'protect', 'gastric mucosa')]",0.0,0.0,0.0
+21,passive_agent,Gastric mucosa is protected by proton pump inhibitors.,"[('proton pump inhibitor', 'protect', 'gastric mucosa')]","[('proton pump inhibitor', 'protect', 'gastric mucosa')]",1.0,1.0,1.0
+22,active_compound,Ibuprofen inhibits cyclooxygenase enzymes.,"[('ibuprofen', 'inhibit', 'cyclooxygenase enzyme')]","[('ibuprofen', 'inhibit', 'cyclooxygenase enzyme')]",1.0,1.0,1.0
+23,passive_agent,Cyclooxygenase enzymes are inhibited by ibuprofen.,"[('ibuprofen', 'inhibit', 'cyclooxygenase enzyme')]","[('ibuprofen', 'inhibit', 'cyclooxygenase enzyme')]",1.0,1.0,1.0
+24,coordinated_verbs,Ibuprofen alleviates pain and reduces fever.,"[('ibuprofen', 'alleviate', 'pain'), ('ibuprofen', 'reduce', 'fever')]","[('ibuprofen', 'alleviate', 'pain'), ('ibuprofen', 'reduce', 'fever')]",1.0,1.0,1.0
+25,active_compound,Prolonged therapy produces adverse effects.,"[('prolonged therapy', 'produce', 'adverse effect')]","[('prolonged therapy', 'produce', 'adverse effect')]",1.0,1.0,1.0
+26,negation,The drug does not cause addiction.,"[('drug', 'not cause', 'addiction')]","[('drug', 'not cause', 'addiction')]",1.0,1.0,1.0
+27,active_compound,Metformin activates adenosine monophosphate-activated protein kinase.,"[('metformin', 'activate', 'adenosine monophosphate-activated protein kinase')]","[('metformin', 'activate', 'adenosine activate protein kinase')]",0.0,0.0,0.0
+28,passive_agent,Mitochondrial respiration is inhibited by the drug.,"[('drug', 'inhibit', 'mitochondrial respiration')]","[('drug', 'inhibit', 'mitochondrial respiration')]",1.0,1.0,1.0
+29,active_compound,The metabolic pathway reduces gluconeogenesis.,"[('metabolic pathway', 'reduce', 'gluconeogenesis')]","[('metabolic pathway', 'reduce', 'gluconeogenesis')]",1.0,1.0,1.0
+30,passive_agent,Insulin resistance is mitigated by regular administration.,"[('regular administration', 'mitigate', 'insulin resistance')]","[('regular administration', 'mitigate', 'insulin resistance')]",1.0,1.0,1.0
+31,active_compound,Early intervention prevents diabetic complications.,"[('early intervention', 'prevent', 'diabetic complication')]","[('early intervention', 'prevent', 'diabetic complication')]",1.0,1.0,1.0
+32,active_compound,Dual antithrombotic therapy elevates gastrointestinal bleeding rates.,"[('dual antithrombotic therapy', 'elevate', 'gastrointestinal bleeding rate')]","[('dual antithrombotic therapy', 'elevate', 'gastrointestinal bleeding rate')]",1.0,1.0,1.0
+33,active_compound,Routine blood tests evaluate coagulation activity.,"[('routine blood test', 'evaluate', 'coagulation activity')]","[('routine blood test', 'evaluate', 'coagulation activity')]",1.0,1.0,1.0
+34,active_compound,Adjusting drug dosages reduces bleeding complications.,"[('drug dosage', 'reduce', 'bleeding complication')]",[],0.0,0.0,0.0
+35,negation,The treatment does not eliminate stroke risk.,"[('treatment', 'not eliminate', 'stroke risk')]","[('treatment', 'not eliminate', 'stroke risk')]",1.0,1.0,1.0
+36,prepositional_object,Renal blood flow depends on prostaglandin activity.,"[('renal blood flow', 'depend', 'prostaglandin activity')]","[('renal blood flow', 'depend', 'prostaglandin activity')]",1.0,1.0,1.0
+37,active_compound,Solar panels convert solar radiation into electricity.,"[('solar panel', 'convert', 'solar radiation')]","[('solar panel', 'convert', 'solar radiation'), ('solar panel', 'convert', 'electricity')]",0.5,1.0,0.667
+38,active_compound,Photovoltaic cells absorb sunlight.,"[('photovoltaic cell', 'absorb', 'sunlight')]","[('photovoltaic cell', 'absorb', 'sunlight')]",1.0,1.0,1.0
+39,negation,Metformin does not lower glucose in cellular absence of kinase.,"[('metformin', 'not lower', 'glucose')]","[('metformin', 'not lower', 'glucose')]",1.0,1.0,1.0
+40,conjunction_subjects,Warfarin and aspirin prolong bleeding time.,"[('warfarin', 'prolong', 'bleeding time'), ('aspirin', 'prolong', 'bleeding time')]",[],0.0,0.0,0.0
+41,active_compound,Hepatic enzymes metabolize ibuprofen.,"[('hepatic enzyme', 'metabolize', 'ibuprofen')]","[('hepatic enzyme', 'metabolize', 'ibuprofen')]",1.0,1.0,1.0
+42,passive_agent,Ibuprofen is metabolized by hepatic enzymes.,"[('hepatic enzyme', 'metabolize', 'ibuprofen')]","[('hepatic enzyme', 'metabolize', 'ibuprofen')]",1.0,1.0,1.0
+43,active_compound,Clinicians monitor hemostatic parameters.,"[('clinician', 'monitor', 'hemostatic parameter')]","[('clinician', 'monitor', 'hemostatic parameter')]",1.0,1.0,1.0
+44,passive_no_agent,The clinical study was completed.,"[('[unspecified]', 'complete', 'clinical study')]","[('[unspecified]', 'complete', 'clinical study')]",1.0,1.0,1.0
+45,active,Patients tolerate metformin.,"[('patient', 'tolerate', 'metformin')]","[('patient', 'tolerate', 'metformin')]",1.0,1.0,1.0
+46,passive_agent,Metformin is tolerated by patients.,"[('patient', 'tolerate', 'metformin')]","[('patient', 'tolerate', 'metformin')]",1.0,1.0,1.0
+47,active_compound,Statins reduce cholesterol levels.,"[('statin', 'reduce', 'cholesterol level')]","[('statins', 'reduce', 'cholesterol level')]",0.0,0.0,0.0
+48,passive_agent,Cholesterol levels are reduced by statins.,"[('statin', 'reduce', 'cholesterol level')]","[('statin', 'reduce', 'cholesterol level')]",1.0,1.0,1.0
+49,negation,Aspirin does not inhibit coagulation factors directly.,"[('aspirin', 'not inhibit', 'coagulation factor')]","[('aspirin', 'not inhibit', 'coagulation factor')]",1.0,1.0,1.0
+50,active_compound,Hypertension worsens cardiovascular outcomes.,"[('hypertension', 'worsen', 'cardiovascular outcome')]","[('hypertension', 'worsen', 'cardiovascular outcome')]",1.0,1.0,1.0

@@ -1,0 +1,4 @@
+from_paragraph,to_paragraph,score,is_drift,log_message
+1,2,0.459,False,OK: coherent transition between P1 and P2 (score 0.46)
+2,3,0.036,True,WARNING: semantic drift between P2 and P3 (score 0.04)
+3,4,0.0,True,WARNING: semantic drift between P3 and P4 (score 0.00)

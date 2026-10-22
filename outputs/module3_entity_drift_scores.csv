@@ -1,0 +1,5 @@
+Paragraph,Total_Entities,Retained_Entities_Count,New_Entities_Count,Retention_Ratio,New_Entity_Ratio
+P1,10,0,10,0.0,1.0
+P2,6,5,1,0.833,0.167
+P3,12,1,11,0.083,0.917
+P4,8,1,7,0.125,0.875

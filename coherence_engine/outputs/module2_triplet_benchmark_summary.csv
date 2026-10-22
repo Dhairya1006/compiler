@@ -1,0 +1,2 @@
+Metric,Total_Gold_Triplets,Total_Extracted,True_Positives,False_Positives,False_Negatives,Precision,Recall,F1_Score
+Triplet Extraction on 50 Gold Sentences,58,55,51,4,7,0.927,0.879,0.903
