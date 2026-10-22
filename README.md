@@ -1,103 +1,215 @@
-# Compiler-Guided Dependency Tree Triplet Extraction & Contextual Coherence Engine
+# Compiler-Guided Dependency Tree Triplet Extraction and Coherence Engine
 
-**Team No.:** 3  
-**Team Members:** Raghav Arora (24BCE2299) & Dhairya Sawant (24BCE2319)  
-**Subject:** Compiler Design / Natural Language Processing  
+Compiler Design / Natural Language Processing project by **Team 3**:
+**Raghav Arora (24BCE2299)** and **Dhairya Sawant (24BCE2319)**.
 
----
+The project applies the stages of a compiler to multi-paragraph natural-language
+documents. It extracts canonical Subject-Predicate-Object (SPO) relations,
+tracks entities across paragraph scopes, measures contextual coherence, and
+reports semantic drift and logical contradictions.
 
-## 1. Executive Summary & Compiler Phase Mapping
+## How the compiler analogy maps to the implementation
 
-In compiler design, source code is systematically verified through Lexical, Syntactic, and Semantic stages:
-1. **Lexical Analysis (Lexer):** Converts character streams into structured tokens and strips whitespace/comments.
-2. **Syntactic Analysis (Parser & AST):** Evaluates grammar rules to construct an Abstract Syntax Tree (AST).
-3. **Semantic Analysis (Symbol Table & Type Checker):** Tracks variable bindings and scope across blocks, and ensures type compatibility.
+| Compiler stage | NLP implementation | Main module |
+| --- | --- | --- |
+| Lexical analysis | Paragraph ingestion, tokenization, POS tagging, lemmatization, stopword filtering, and content-word extraction | [`module1_lexical.py`](coherence_engine/engine/module1_lexical.py) |
+| Syntax analysis / AST construction | spaCy dependency-tree traversal and canonical SPO triplet extraction | [`module2_triplets.py`](coherence_engine/engine/module2_triplets.py) |
+| Semantic analysis / symbol table | Entity registration, paragraph-scope metadata, heuristic pronoun resolution, and entity drift metrics | [`module3_symbol_table.py`](coherence_engine/engine/module3_symbol_table.py) |
+| Verification and diagnostics | Hybrid coherence scoring, threshold calibration, contradiction detection, drift logs, and visualizations | [`module4_scoring.py`](coherence_engine/engine/module4_scoring.py) |
 
-This project implements a direct structural equivalent for natural language documents:
-- **Lexical Pass:** Sentence segmentation, tokenization, POS tagging (`NOUN`, `VERB`, `ADJ`), lemmatization, and stopword filtering.
-- **Syntactic Pass (AST Parser):** Dependency parse tree traversal extracting Subject–Predicate–Object (SPO) relational triplets across active/passive clauses and compound modifiers.
-- **Semantic Pass (Symbol Table & Coherence):** Cross-paragraph pronoun resolution (Symbol Table) + hybrid contextual coherence scoring combining dense vector similarity with soft-Jaccard triplet alignment.
-- **Diagnostic / Error Layer:** Identifies logical context breaks ($< 0.35$ coherence score) as Semantic Drift warnings.
+## Features
 
----
+- Reads `.txt` and `.docx` documents and keeps paragraphs containing at least
+  five words.
+- Extracts normalized triplets from active and passive clauses.
+- Handles compound and adjectival noun modifiers, coordinated subjects and
+  objects, coordinated verbs, prepositional objects, agentless passives, and
+  syntactic negation.
+- Normalizes passive voice, for example:
 
-## 2. Project Directory Structure
+  ```text
+  Blood glucose is reduced by metformin.
+  -> (metformin, reduce, blood glucose)
+  ```
+
+- Resolves `it`, `they`, `he`, `she`, `this`, `these`, `those`, and `them` to
+  the most recent salient named subject using the symbol table.
+- Computes a hybrid score:
+
+  ```text
+  coherence = 0.4 * soft_triplet_similarity + 0.6 * embedding_similarity
+  ```
+
+- Supports spaCy `en_core_web_md` vectors and optional
+  `all-MiniLM-L6-v2` Sentence-Transformers embeddings. If the latter is not
+  available, scoring falls back to spaCy vectors.
+- Detects consecutive paragraph transitions below the default drift threshold
+  of `0.35`.
+- Detects contradictions when subject and object match and one predicate is
+  negated while the other is not.
+- Produces coherence heatmaps, entity-drift plots, knowledge graphs, CSV
+  reports, and diagnostic logs.
+
+## Repository layout
 
 ```text
 compiler/
-├── venv/                              # Isolated virtual environment
+├── README.md
+├── results_summary.md
+├── colab_full_project.ipynb
 ├── coherence_engine/
-│   ├── engine.py                      # Core compiler engine implementation (Steps 2-6 + Add-ons)
-│   ├── demo.ipynb                     # Fully executed Jupyter Notebook with rendered outputs
-│   ├── test_engine.py                 # Automated unit and integration test suite
-│   ├── build_notebook.py              # Generator script for demo.ipynb
-│   ├── data/
-│   │   └── sample.txt                 # Multi-paragraph benchmark document
-│   └── outputs/
-│       ├── knowledge_graph.png        # NetworkX entity-relationship graph
-│       └── heatmap.png                # Seaborn pairwise consistency heatmap
-└── README.md                          # Project documentation and Viva guide
+│   ├── engine/                 # Maintained modular implementation
+│   │   ├── __init__.py         # Unified public API
+│   │   ├── module1_lexical.py
+│   │   ├── module2_triplets.py
+│   │   ├── module3_symbol_table.py
+│   │   └── module4_scoring.py
+│   ├── data/                   # Corpora and evaluation data
+│   ├── outputs/                # Generated CSV, PNG, and log artifacts
+│   ├── tests/
+│   │   └── test_module2.py
+│   ├── experiments.py          # Benchmark and end-to-end runner
+│   ├── build_notebook.py       # Generates demo.ipynb
+│   ├── demo.ipynb
+│   └── notebooks/
+├── data/                       # Additional top-level copies of benchmark data
+└── outputs/                    # Additional top-level output artifacts
 ```
 
----
+The modular package in `coherence_engine/engine/` is the implementation used
+by the benchmark runner. The older top-level `coherence_engine/engine.py` and
+`coherence_engine/test_engine.py` are retained repository files, but the
+modular API and `coherence_engine/tests/test_module2.py` are the current
+workflow.
 
-## 3. Quickstart & Execution
+## Setup
 
-### Activate Virtual Environment
-```bash
-# Windows PowerShell / CMD
-.\venv\Scripts\activate
+The repository includes a `venv` directory in the working copy. Activate it
+from the repository root, or use another Python 3.10+ environment:
+
+```powershell
+.\venv\Scripts\Activate.ps1
 ```
 
-### Run Unit Tests
-```bash
-python coherence_engine/test_engine.py
+The runtime requires Python packages including `spacy`, `numpy`, `pandas`,
+`networkx`, `matplotlib`, `seaborn`, `scikit-learn`, `sentence-transformers`,
+`python-docx`, `jupyter`, and `nbformat`. The spaCy model used by the project
+must also be installed:
+
+```powershell
+python -m spacy download en_core_web_md
 ```
 
-### Launch Jupyter Notebook
-```bash
-jupyter notebook coherence_engine/demo.ipynb
+`sentence-transformers` is optional at runtime; the scoring module explicitly
+falls back to spaCy vectors when `all-MiniLM-L6-v2` cannot be loaded.
+
+## Run the tests
+
+From the repository root:
+
+```powershell
+python coherence_engine\tests\test_module2.py
 ```
 
----
+The test cases cover simple active clauses, active/passive equivalence,
+agentless passives, conjunction expansion, coordinated verbs, negation,
+prepositional objects, multi-clause input, compound spans, and gerund parses.
 
-## 4. Benchmark Results on Test Document
+## Run the benchmarks and generate outputs
 
-### Triplet Extraction & Symbol Table Resolution
-- **P1:** `('artificial intelligence', 'optimize', 'complex data analysis')`
-- **P2:** Pronoun *"it"* resolved to *"company"* via Symbol Table:
-  - `('company', 'develop', 'learning model')`
-  - `('company', 'train', 'model')`
-  - `('company', 'deploy', 'hospital')`
-- **P3:** Passive sentence *"The diagnosis was confirmed by the radiologist"* converted to:
-  - `('doctor', 'use', 'model')`
-  - `('radiologist', 'confirm', 'diagnosis')`
-- **P4:** Off-topic paragraph on solar panels:
-  - `('solar panel', 'convert', 'sunlight')`
-  - `('solar panel', 'convert', 'clean electricity')`
-  - `('solar panel', 'convert', 'home')`
+Run all benchmark evaluations and end-to-end examples:
 
-### Coherence Matrix ($N \times N$)
-| | P1 | P2 | P3 | P4 |
-|---|:---:|:---:|:---:|:---:|
-| **P1** | 1.000 | 0.490 | 0.388 | 0.388 |
-| **P2** | 0.490 | 1.000 | 0.423 | 0.368 |
-| **P3** | 0.388 | 0.423 | 1.000 | **0.278** |
-| **P4** | 0.388 | 0.368 | **0.278** | 1.000 |
+```powershell
+python coherence_engine\experiments.py
+```
 
-### Semantic Drift Diagnostic Log
-`[!] WARNING: semantic drift between P3 and P4 (score 0.278 < 0.35)`  
-The solar panel paragraph is accurately flagged as an off-topic divergence.
+The script performs the following:
 
----
+1. Evaluates triplet extraction against 50 biomedical sentences in
+   `coherence_engine/data/gold_triplets.json`.
+2. Compares seven scoring variants on 40 labelled paragraph pairs in
+   `coherence_engine/data/labelled_pairs.csv`.
+3. Calibrates drift thresholds from `0.25` through `0.50`.
+4. Runs end-to-end examples for metformin, warfarin/aspirin, and ibuprofen.
+5. Runs the injected metformin contradiction example.
+6. Exports symbol-table, pronoun-resolution, entity-drift, calibration, and
+   visualization artifacts to `coherence_engine/outputs/`.
 
-## 5. Viva Talking Points Checklist
+To generate the demonstration notebook:
 
-1. **Why Dependency Trees as ASTs?**  
-   Like compiler ASTs abstracting away syntax noise, dependency trees abstract word order. Active and passive voice produce identical semantic triplets.
-2. **Why a Symbol Table?**  
-   Pronouns (*"it"*, *"they"*) act like identifier references. Without a Symbol Table, cross-paragraph references break.
-3. **Why Hybrid Scoring ($0.4 \times \text{triplet} + 0.6 \times \text{vector}$)?**  
-   Embeddings capture general topic but ignore grammar structure. Triplets capture grammar structure but are sparse. The hybrid formula combines both.
-4. **Why Better Than the Base Paper?**  
-   The base paper uses naive token Jaccard overlap, which drops to $0.00$ on synonyms and passive structures. Our system maintains accurate semantic affinity scores.
+```powershell
+python coherence_engine\build_notebook.py
+jupyter notebook coherence_engine\demo.ipynb
+```
+
+## Datasets
+
+The benchmark inputs are in [`coherence_engine/data`](coherence_engine/data):
+
+| File | Purpose |
+| --- | --- |
+| `gold_triplets.json` | 50 biomedical sentences with 58 annotated triplets for precision, recall, and F1 evaluation |
+| `labelled_pairs.csv` | 40 labelled paragraph pairs: 15 consistent, 15 drifting, and 10 contradicting |
+| `metformin_glucose.txt` | Four-paragraph active/passive and mechanism-consistency example |
+| `metformin_glucose_contradiction.txt` | The same topic with a fifth paragraph containing explicit negated claims |
+| `warfarin_aspirin_bleeding.txt` | Consistent antithrombotic and bleeding-risk example |
+| `warfarin_aspirin_drift.txt` | Warfarin/aspirin example containing an off-topic drift |
+| `ibuprofen_drift.txt` | Ibuprofen discussion with an injected solar-panel paragraph |
+| `sample.txt` | Small four-paragraph demonstration document |
+
+## Current benchmark results
+
+The checked-in generated summaries report:
+
+- **Triplet extraction:** precision `0.927`, recall `0.879`, F1 `0.903`
+  on the 50-sentence gold benchmark.
+- **Best calibrated drift threshold:** `0.45`, with accuracy, precision,
+  recall, and F1 all reported as `1.000` on the labelled-pair benchmark.
+- **Sentence-Transformers baseline:** F1 `0.968` for drift detection.
+- **Proposed hybrid (SBERT + AST):** F1 `0.789` for drift detection.
+- **AST contradiction detection:** precision `1.000`, recall `0.600`, and
+  F1 `0.750` on the injected contradiction evaluation.
+
+Detailed methodology, calibration tables, comparative results, and error
+analysis are available in [`coherence_engine/results_summary.md`](coherence_engine/results_summary.md).
+
+## Public Python API
+
+The package re-exports its supported functions from
+[`coherence_engine/engine/__init__.py`](coherence_engine/engine/__init__.py):
+
+```python
+from coherence_engine.engine import (
+    load_paragraphs,
+    lexical_analysis,
+    extract_triplets,
+    resolve_triplets_with_symbol_table,
+    compute_hybrid_score,
+    build_coherence_matrix,
+    detect_semantic_drift,
+    detect_contradictions,
+    flag_document_anomalies,
+)
+```
+
+For example, a document can be analyzed with:
+
+```python
+from coherence_engine.engine import (
+    build_coherence_matrix,
+    detect_semantic_drift,
+    load_paragraphs,
+)
+
+paragraphs = load_paragraphs("coherence_engine/data/ibuprofen_drift.txt")
+matrix, docs, triplets = build_coherence_matrix(
+    paragraphs,
+    use_sbert=True,
+)
+drift_events = detect_semantic_drift(matrix)
+```
+
+`build_coherence_matrix` returns the symmetric paragraph-by-paragraph score
+matrix, processed spaCy documents, and extracted triplets. The unified
+`flag_document_anomalies` helper additionally returns drift events,
+contradictions, and aggregate anomaly counts.
